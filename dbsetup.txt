@@ -15,3 +15,6 @@ CREATE TABLE `profile` (
     `age` int(3),
 PRIMARY KEY (`ID`) ) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8mb4;
 
+insert into profile (name, email, message, hash, ip, gender, age) values ('toos', 'toos@email.com', 'Ik ben tante Toos', 'hash1', '1.1.1.1', 0, 101);
+
+insert into profile (name, email, message, hash, ip, gender, age) values ('toon', 'toon@email.com', 'Ik ben ome Toon', 'hash2', '2.2.2.2', 1, 99);
