@@ -1,0 +1,15 @@
+create database phpdate;
+
+use phpdate;
+
+CREATE TABLE `profile` (   
+    `name` varchar(400) NOT NULL,   
+    `email` varchar(400) NOT NULL,   
+    `message` varchar(2000) NOT NULL,   
+    `hash` varchar(32) NOT NULL,   
+    `ip` varchar(400) NOT NULL,   
+    `active` int(1) NOT NULL DEFAULT '0',   
+    `dt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,   
+    `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,   
+PRIMARY KEY (`ID`) ) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8mb4;
+
