@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 class Product {
   
     // database connection and table name
@@ -8,12 +9,18 @@ class Product {
     // object properties
     public $id;
     public $name;
-    public $description;
-    public $price;
-    public $category_id;
-    public $category_name;
-    public $created;
-  
+    public $ww;
+    public $mail;
+    public $gender;
+    public $search;
+    public $age;
+    public $location;
+    public $photo;
+    public $hash;
+    // public $gender;
+    // public $search;
+    // public $age;
+
     // constructor with $db as database connection
     public function __construct($db){
         $this->conn = $db;
@@ -110,30 +117,37 @@ class Product {
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                    name=:name, price=:price, description=:description, category_id=:category_id, created=:created";
+                    name=:name, ww=:ww, mail=:mail, gender=:gender, search=:search, age=:age, location=:location, photo=:photo, hash=:hash";
     
         // prepare query
         $stmt = $this->conn->prepare($query);
     
         // sanitize
         $this->name=htmlspecialchars(strip_tags($this->name));
-        $this->price=htmlspecialchars(strip_tags($this->price));
-        $this->description=htmlspecialchars(strip_tags($this->description));
-        $this->category_id=htmlspecialchars(strip_tags($this->category_id));
-        $this->created=htmlspecialchars(strip_tags($this->created));
-    
+        $this->ww=htmlspecialchars(strip_tags($this->ww));
+        $this->mail=htmlspecialchars(strip_tags($this->mail));
+        $this->gender=htmlspecialchars(strip_tags($this->gender));
+        $this->search=htmlspecialchars(strip_tags($this->search));
+        $this->age=htmlspecialchars(strip_tags($this->age));
+        $this->location=htmlspecialchars(strip_tags($this->location));
+        $this->photo=htmlspecialchars(strip_tags($this->photo));
+        $this->hash=htmlspecialchars(strip_tags($this->hash));    
         // bind values
         $stmt->bindParam(":name", $this->name);
-        $stmt->bindParam(":price", $this->price);
-        $stmt->bindParam(":description", $this->description);
-        $stmt->bindParam(":category_id", $this->category_id);
-        $stmt->bindParam(":created", $this->created);
-    
+        $stmt->bindParam(":ww", $this->ww);
+        $stmt->bindParam(":mail", $this->mail);
+        $stmt->bindParam(":gender", $this->gender);
+        $stmt->bindParam(":search", $this->search);
+        $stmt->bindParam(":age", $this->age);
+        $stmt->bindParam(":location", $this->location);
+        $stmt->bindParam(":photo", $this->photo);
+        $stmt->bindParam(":hash", $this->hash);
+
         // execute query
         if($stmt->execute()){
             return true;
         }
-    
+        
         return false;
         
     }

@@ -1,0 +1,9 @@
+inschrijfformulier:
+    Naam
+    Email
+    Foto
+    Geslacht
+    Leeftijd
+    Titel
+    Bericht
+    Locatie
