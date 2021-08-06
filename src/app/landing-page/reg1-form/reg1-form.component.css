@@ -1,6 +1,7 @@
 #reg1 {
    background-color:darkmagenta;
-   width: 500px;
-   height: 80px;
-   margin: 10px;
+   width: 90%;
+   margin: 0 auto;
+   /* height: 80px;
+   margin: 10px; */
 }

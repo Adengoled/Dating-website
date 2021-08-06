@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-   background:burlywood;
+  background-image: url('/assets/couple7.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
