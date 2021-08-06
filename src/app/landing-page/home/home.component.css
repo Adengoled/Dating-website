@@ -1,7 +1,9 @@
 .wrapper {
+
    background-color:darkslategray;
    width: 600px;
    display: flex;
    flex-direction: column;
    margin-top: 300px;
 }
+
