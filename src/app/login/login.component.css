@@ -1,0 +1,7 @@
+.bg {
+    background-image: url("/assets/couple7.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 900px;
+}

@@ -1,0 +1,55 @@
+.side-navbar {
+  background-color: cornflowerblue;
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 240px;
+  padding: 6px 14px;
+}
+
+.side-navbar .logo-content {
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-name {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+ul {
+  margin-top: 20px;
+}
+
+li {
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  width: 100%;
+  margin: 0 5px;
+  list-style: none;
+}
+
+a {
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+a:hover {
+  opacity: 0.65;
+}
+
+svg {
+  height: 50px;
+  min-width: 50px;
+  border-radius: 12px;
+  line-height: 50px;
+}
+
+svg path {
+  fill: var(--white);
+}
