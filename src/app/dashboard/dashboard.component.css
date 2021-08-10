@@ -1,10 +1,10 @@
+/*SIDE-NAVBAR*/
+
 .side-navbar {
-  background-color: cornflowerblue;
-  position: relative;
+  /* position: relative;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 240px;
+  height: 100%; */
   padding: 6px 14px;
 }
 
@@ -15,7 +15,7 @@
   align-items: center;
 }
 
-.logo-name {
+.logo-content span {
   font-weight: 700;
   font-size: 20px;
 }
@@ -52,4 +52,44 @@ svg {
 
 svg path {
   fill: var(--white);
+}
+
+svg {
+  height: 25px;
+}
+
+/*GRID DASHBOARD*/
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: 100px 1fr 150px;
+  grid-template-areas:
+    'side-navbar dashboard-header'
+    'side-navbar main'
+    'side-navbar footer';
+  height: 100vh;
+  background-color: var(--black);
+}
+
+.dashboard-header {
+  grid-area: dashboard-header;
+  background-color: var(--black);
+}
+
+.side-navbar {
+  grid-area: side-navbar;
+  background-color: var(--black);
+}
+
+.main {
+  grid-area: main;
+  background-color: var(--white);
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.footer {
+  grid-area: footer;
+  background-color: var(--black);
 }
