@@ -25,14 +25,14 @@ import { ProfileComponent } from './dashboard/profile/profile.component';
       {path: 'login', component: LoginComponent},
       {path: 'register', component: RegisterComponent},
       {path: 'dashboard', component: DashboardComponent,
-  children: [
-    { path: 'zoek-profielen', component: SearchComponent},
-    { path: 'mijn-profiel', component: ProfileComponent},
-    { path: 'berichten', component: MessagesComponent},
-    { path: 'instellingen', component: SettingsComponent}
-    ]
-},
-]),
+        children: [
+            { path: 'zoek-profielen', component: SearchComponent},
+            { path: 'mijn-profiel', component: ProfileComponent},
+            { path: 'berichten', component: MessagesComponent},
+            { path: 'instellingen', component: SettingsComponent}
+            ]
+        },
+    ]),
   ],
   providers: [],
   bootstrap: [AppComponent]
