@@ -1,11 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
-
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 14px;
+    margin: 0;
 }
 
 html {
@@ -46,12 +42,12 @@ input[type="search"]::-webkit-search-decoration{
     box-shadow: none;
 }
 
-
 /* COLOR VARIABLES */
 
 :root {
     --prim: #5E54A4;
     --prim-light: #B9B4D7;
+    --baseline: #87879D;
     --sec:  #4D96A9;
     --sec-light: #8EC4CF;
     --error: #FF7979;
@@ -73,7 +69,9 @@ a{
 
 /* BUTTON STYLING */
 
-button{
+.register-wrapper button,
+/* .login-wrapper button, */
+.form-wrapper button{
     width: 100%;
     text-align: center;
     color: #FAFAFA;
@@ -84,13 +82,31 @@ button{
     box-shadow: inset 0px -4px 0px rgba(0, 0, 0, 0.0908818);
 }
 
-button:hover{
-    opacity: 0.65;
+.register-wrapper button:hover,
+/* .login-wrapper button:hover, */
+.form-wrapper button:hover{
+    /* opacity: 0.65; */
 }
 
 .link-btn{
     color: var(--white);
     background-color: var(--sec);
+    display: inline;
+    padding: 17.5px 0px;
+    height: 50px;
+    border-radius: 5px;
+    align-self: flex-end;
+    margin-bottom: 6.3rem;
+    width: calc(540px - 36px);
+    cursor: pointer;
+    transition: 0.2s ease;
+    box-shadow: inset 0px -4px 0px rgba(0, 0, 0, 0.0908818);
+    /* width: 50%; */
+}
+
+.link-btn:hover{
+    color: var(--sec-light)!important;
+    /* opacity: 1!important; */
 }
 
 .link-btn a{
@@ -101,9 +117,44 @@ button:hover{
 
 .link-btn span{
     font-weight: 500;
+    height: max-content;
 }
 
 /* END OF BUTTON STYLING */
+
+
+/* LANDINGSPAGE LAYOUT */
+
+.login-wrapper{
+    display: flex;
+    max-width: 1200px;
+    margin-left: 50vw;
+    margin-top: 6rem;
+    justify-content: center;
+    flex-direction: column;
+    /* height: 0%; */
+    padding-bottom: 2rem;
+}
+
+.register-section-wrapper{
+    display: flex;
+    max-width: 1200px;
+    margin: auto;
+    justify-content: center;
+    flex-direction: row-reverse;
+    height: 0%;
+    padding-bottom: 2rem;
+}
+
+/* .login-form-wrapper{
+    margin-left: 50%;
+} */
+
+.login-wrapper .link-btn{
+    margin-bottom: 1rem;
+    align-self:center;
+    width: 540px;;
+}
 
 
 /* FORM STYLING */
@@ -115,9 +166,11 @@ form{
 .form-wrapper{
     width: 540px;
     font-size: 16px;
-    margin: 0 auto;
+    margin: auto;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    background-color: var(--white);
+
 }
 
 .form-wrapper input{
@@ -297,12 +350,7 @@ input[type="checkbox"]{
     color: var(--white);
 }
 
-
-
-
 /* END OF LOGIN FORM */
-
-
 
 /* REGISTRATION FORM */
 
@@ -374,9 +422,6 @@ input[type="radio"]{
     top: 14px;
 } 
 
-
-
-
 .consent-text,
 .consent-text a{
     font-size: 0.8rem;
@@ -396,7 +441,6 @@ input[type="radio"]{
 .consent-text a:hover{
     opacity: 0.65;
 }
-
 
 /* REGISTER SUCCES POPUP */
 
@@ -494,4 +538,153 @@ input[type="radio"]{
 
 .close-window:hover{
     cursor: pointer;
+}
+
+/* USER GRID SECTION */
+
+/* main{
+    max-width: 80%;
+} */
+
+.user-profiles{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 1rem;
+    padding: 1.25rem;
+}
+
+/* CARDS STYLING */
+
+.card{
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    background-image: url(/img/users/hortensia.jpg);
+    background-size: cover;
+    padding: 22.5rem 0 0;
+    /* min-height: 350px; */
+    position: relative;
+    min-width: 250px;
+    overflow: hidden;
+
+    transition: transform 0.35s ease;
+} 
+
+.card:hover{
+    /* cursor: pointer; */
+    transform: scale(1.015);
+}
+
+.card-content,
+.card-content div{
+    display: flex;
+}
+
+.card-content{
+    justify-content: space-between;
+    padding: 1.25rem;
+    background: linear-gradient(
+        hsl(0 0% 0% / 0),
+        hsl(50 0% 0% / 0.3),
+        hsl(0 0% 0% / 1)
+    );
+    flex-direction: column;
+    /* align-items: flex-start; */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* border-radius: 10px; */
+    transform: translateY(39%);
+    transition: transform 0.35s ease;
+}
+
+.card:hover .card-content{
+    transform: translateY(0);
+}
+
+.card-content h3,
+.card-content span{
+    letter-spacing: 0.05rem;
+    font-size: 1.6rem;
+    color: #FAFAFA;
+}
+
+.card-content span{
+    padding-right: 10px;
+}
+
+.card-content span{
+    padding-left: 5px;
+}
+
+.card-content button{
+    text-transform: uppercase;
+}
+
+.card-content button a{
+    color: #FAFAFA;
+}
+
+.card-content,
+.btn-container,
+.user-details,
+.user-details-container{
+    display: flex;
+}
+
+.user-details-container img{
+    width: 20px;
+}
+
+.locatie{
+    color: var(--white)
+}
+
+.locatie p{
+    padding-bottom: 5px;
+}
+
+.locatie img{
+    padding-right: 7.5px;
+    height: 20px;
+}
+
+.profile-btn,
+.chat-btn{
+    padding: 7.5px 12.5px;
+    border-radius: 7.5px;
+    box-shadow: inset 0px -4px 0px rgba(0, 0, 0, 0.0908818);
+    transition: 0.3s ease;
+}
+
+.profile-btn:hover,
+.chat-btn:hover{
+    cursor: pointer;
+}
+
+.profile-btn:hover{
+    background-color: var(--sec-light);
+}
+
+.profile-btn{
+    background-color: var(--sec);
+    margin: 1rem 1rem 0 0; 
+}
+
+.chat-btn{
+    background-color: var(--white);
+    margin: 1rem 1rem 0 0; 
+}
+
+/* .chat-btn:hover{
+    background-color: var(--light-gray);
+} */
+
+
+.chat-btn img{
+    width: 20px;
+    padding-top: 5px;
+}
+
+.user-photo{
+    width: 100%;
 }

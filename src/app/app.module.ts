@@ -10,13 +10,15 @@ import { SearchComponent } from './dashboard/search/search.component';
 import { SettingsComponent } from './dashboard/settings/settings.component';
 import { MessagesComponent } from './dashboard/messages/messages.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
+import { LandingHeaderComponent } from './landing-header/landing-header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    LandingHeaderComponent
   ],
   imports: [
     BrowserModule,

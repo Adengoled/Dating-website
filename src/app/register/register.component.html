@@ -1,101 +1,92 @@
 <div class="bg">
-    <section class="login-wrapper">
-        <button class="login-link-btn">
-            <a href="/login"><span>Al een account?</span> Klik hier om aan te melden</a>
+    <app-landing-header></app-landing-header>
+
+
+    <section class="register-section-wrapper">
+        <button class="link-btn">
+            <a href="/login"><span>Al ingeschreven?</span> Klik hier om aan te melden</a>
         </button>
-       
+
         <!-- LOGIN FORMULIER -->
-        <div class="form-wrapper">
+        <div class="form-wrapper register-wrapper">
             <form action="http://localhost/phpdate/better-love/Dating-website/database/create.php" method="POST">
                 <div class="input-wrapper">
-                    <label for="profielnaam" >Uw profielnaam</label> 
+                    <label for="profielnaam">Uw profielnaam</label>
                     <input type="text" id="profielnaam" name="name" placeholder="Profielnaam" required>
                 </div>
-        
+
                 <div class="input-wrapper">
-                    <label for="profielnaam" >E-mailadres</label> 
+                    <label for="profielnaam">E-mailadres</label>
                     <input type="email" id="email" name="email" placeholder="voorbeeld@email.com" required>
                 </div>
-        
+
                 <div class="input-wrapper">
-                    <label for="wachtwoord" >Wachtwoord</label> 
+                    <label for="wachtwoord">Wachtwoord</label>
                     <div class="pw-wrapper">
-                        <input src="/assets/eye-o.svg" type="password" id="wachtwoord" name="ww" placeholder="Geef wachtwoord in" required>
+                        <input src="/assets/eye-o.svg" type="password" id="wachtwoord" name="ww"
+                            placeholder="Geef wachtwoord in" required>
                         <!-- <img src="img/eye-o.svg" id="show-pw" title="toon paswoord" onClick="togglePW()"> -->
                     </div>
                 </div>
-        
+
                 <div class="input-wrapper">
-                <div class="gender-flex">
-                    <div class="gender-wrapper">
-                        <label>Ik ben</label>
-                        <div>
-                            <div class="radio-item">
-                                <input type="radio"
-                                name="user-geslacht" 
-                                value="user-male"
-                                id="user-male">
-                                <label for="user-male">
-                                    <img src="/assets/male.svg" alt="Mannelijk geslacht icoon">
-                                </label>
-                            </div>
-        
-                            <div class="radio-item radio-item-two">
-                                <input type="radio"
-                                name="user-geslacht"
-                                value="user-female"
-                                id="user-female">    
-                                <label for="user-female"> 
-                                    <img src="/assets/female.svg" alt="Vrouwelijk geslacht icoon">
-                                </label>
+                    <div class="gender-flex">
+                        <div class="gender-wrapper">
+                            <label>Ik ben</label>
+                            <div>
+                                <div class="radio-item">
+                                    <input type="radio" name="user-geslacht" value="user-male" id="user-male">
+                                    <label for="user-male">
+                                        <img src="/assets/male.svg" alt="Mannelijk geslacht icoon">
+                                    </label>
+                                </div>
+
+                                <div class="radio-item radio-item-two">
+                                    <input type="radio" name="user-geslacht" value="user-female" id="user-female">
+                                    <label for="user-female">
+                                        <img src="/assets/female.svg" alt="Vrouwelijk geslacht icoon">
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                
-                <!-- DATE GENDER SELECT -->
-    
-                    <div class="gender-wrapper">
-                        <label>Ik zoek</label>
-                        <div>
-                            <div class="radio-item">
-                                <input type="radio"
-                                name="date-geslacht" 
-                                value="date-male"
-                                id="date-male">
-                                <label for="date-male">
-                                    <img src="/assets/male.svg" alt="Mannelijk geslacht icoon">
-                                </label>
-                            </div>
-        
-                            <div class="radio-item radio-item-two">
-                                <input type="radio"
-                                name="date-geslacht"
-                                value="date-female"
-                                id="date-female">
-                                <label for="date-female"> 
-                                    <img src="/assets/female.svg" alt="Vrouwelijk geslacht icoon">
-                                </label>
+
+                        <!-- DATE GENDER SELECT -->
+
+                        <div class="gender-wrapper">
+                            <label>Ik zoek</label>
+                            <div>
+                                <div class="radio-item">
+                                    <input type="radio" name="date-geslacht" value="date-male" id="date-male">
+                                    <label for="date-male">
+                                        <img src="/assets/male.svg" alt="Mannelijk geslacht icoon">
+                                    </label>
+                                </div>
+
+                                <div class="radio-item radio-item-two">
+                                    <input type="radio" name="date-geslacht" value="date-female" id="date-female">
+                                    <label for="date-female">
+                                        <img src="/assets/female.svg" alt="Vrouwelijk geslacht icoon">
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="input-wrapper">
+                    <label for="profielnaam">Geboortedatum</label>
+                    <input type="text" id="geboortedatum" name="" placeholder="MM/DD/JJ" required>
                 </div>
-        
-                <!-- <div class="login-details-wrapper">
-                    <div class="logged-state-wrapper">
-                        <input type="checkbox" id="save-login">
-                        <label for="save-login">Ingelogd blijven</label>
-                    </div>
-            
-                    <a href="#">Wachtwoord vergeten?</a>
-                </div> -->
-        
-                <button type="submit" class="form-submit-btn">Registreer</button>
-        
-            </form> 
+
+                <button type="submit" class="form-submit-btn">Begin met daten</button>
+
+                <div class="consent-text">
+                    <small class="consent-text">Door te klikken ga je akkoord met onze <a
+                            href="">Gebruikersovereenkomst</a></small>
+                </div>
+
+            </form>
         </div>
 
     </section>
-</div><!-- div bg-->
-
-
+</div>
