@@ -1,14 +1,13 @@
+/*ALGEMEEN*/
+
 /*SIDE-NAVBAR*/
 
-.side-navbar {
-  /* position: relative;
-  top: 0;
-  left: 0;
-  height: 100%; */
-  padding: 6px 14px;
+.side-navbar ul {
+  align-self: center; /*geeft ander effect als het uitgezet is*/
+  margin-top: 50%;
 }
 
-.side-navbar .logo-content {
+.logo-content {
   color: var(--white);
   display: flex;
   flex-direction: column;
@@ -18,6 +17,7 @@
 .logo-content span {
   font-weight: 700;
   font-size: 20px;
+  margin-top: -35px;
 }
 
 ul {
@@ -38,9 +38,17 @@ a {
   display: flex;
   align-items: center;
   text-decoration: none;
+  transition: all 0.4 ease;
 }
+
 a:hover {
-  opacity: 0.65;
+  background-color: var(--prim);
+  border-radius: 5px;
+}
+
+.active {
+  background-color: var(--prim);
+  border-radius: 5px;
 }
 
 svg {
@@ -58,16 +66,39 @@ svg {
   height: 25px;
 }
 
+/*DASHBOARD HEADER*/
+
+.dashboard-header ul {
+  position: relative;
+  display: flex;
+  width: 95%;
+  padding: 5px;
+  margin-right: 2%;
+}
+
+.dashboard-header li {
+  position: relative;
+  margin: auto;
+  text-transform: uppercase;
+}
+
+.dashboard-header li a{
+  position: relative;
+}
+
+.dashboard-header li span {
+  margin: auto;
+}
+
 /*GRID DASHBOARD*/
 
 .dashboard-grid {
   display: grid;
   grid-template-columns: 240px 1fr;
-  grid-template-rows: 100px 1fr 150px;
+  grid-template-rows: 100px 1fr;
   grid-template-areas:
     'side-navbar dashboard-header'
-    'side-navbar main'
-    'side-navbar footer';
+    'side-navbar main';
   height: 100vh;
   background-color: var(--black);
 }
@@ -75,21 +106,39 @@ svg {
 .dashboard-header {
   grid-area: dashboard-header;
   background-color: var(--black);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  /* position: fixed; */
+  top: 0;
+  right: 0;
+  /* z-index: 100000; */
+  width: 87.5%;
+  height: 100px;
 }
 
 .side-navbar {
   grid-area: side-navbar;
   background-color: var(--black);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+  height: 100%;
+  padding: 6px 14px;
+  display: flex;
+  flex-direction: column;
+  width: 240px;
 }
 
 .main {
   grid-area: main;
   background-color: var(--white);
   border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
+  /* border-bottom-left-radius: 30px; */
 }
 
-.footer {
+/* .footer {
   grid-area: footer;
   background-color: var(--black);
-}
+} */
