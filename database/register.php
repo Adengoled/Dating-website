@@ -2,7 +2,6 @@
 
 include 'getusers.php';
 session_start();
-//$_SESSION['user'] = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
@@ -18,7 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $getusers = new Getusers();
     $getusers->register($name, $ww, $mail, $gender, $search, $age, $location, $hash);
     sendMail($mail, $hash);
-
 }
 
 function sendMail($mail, $hash) {
@@ -90,20 +88,3 @@ function sendMail($mail, $hash) {
 }
 
 ?>
-
-<html>
-<form method="post">
-
-    <input type="text" name="name" id="name">
-    <input type="text" name="ww" id="ww">
-    <input type="text" name="mail" id="mail">
-    <input type="text" name="gender" id="gender">
-    <input type="text" name="search" id="search">
-    <input type="text" name="age" id="age">
-    <input type="text" name="location" id="location">
-    <!-- <input type="file" name="photo" id="photo"> -->
-
-    <input type="submit" name="submit" id="submit">
-
-</form>
-</html>

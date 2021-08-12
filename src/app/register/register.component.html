@@ -1,101 +1,75 @@
-<div class="bg">
-    <section class="login-wrapper">
-        <button class="login-link-btn">
-            <a href="/login"><span>Al een account?</span> Klik hier om aan te melden</a>
-        </button>
-       
-        <!-- LOGIN FORMULIER -->
-        <div class="form-wrapper">
-            <form action="http://localhost/phpdate/better-love/Dating-website/database/create.php" method="POST">
-                <div class="input-wrapper">
-                    <label for="profielnaam" >Uw profielnaam</label> 
-                    <input type="text" id="profielnaam" name="name" placeholder="Profielnaam" required>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Angular Reactive Form</h3>
                 </div>
-        
-                <div class="input-wrapper">
-                    <label for="profielnaam" >E-mailadres</label> 
-                    <input type="email" id="email" name="email" placeholder="voorbeeld@email.com" required>
-                </div>
-        
-                <div class="input-wrapper">
-                    <label for="wachtwoord" >Wachtwoord</label> 
-                    <div class="pw-wrapper">
-                        <input src="/assets/eye-o.svg" type="password" id="wachtwoord" name="ww" placeholder="Geef wachtwoord in" required>
-                        <!-- <img src="img/eye-o.svg" id="show-pw" title="toon paswoord" onClick="togglePW()"> -->
-                    </div>
-                </div>
-        
-                <div class="input-wrapper">
-                <div class="gender-flex">
-                    <div class="gender-wrapper">
-                        <label>Ik ben</label>
-                        <div>
-                            <div class="radio-item">
-                                <input type="radio"
-                                name="user-geslacht" 
-                                value="user-male"
-                                id="user-male">
-                                <label for="user-male">
-                                    <img src="/assets/male.svg" alt="Mannelijk geslacht icoon">
-                                </label>
-                            </div>
-        
-                            <div class="radio-item radio-item-two">
-                                <input type="radio"
-                                name="user-geslacht"
-                                value="user-female"
-                                id="user-female">    
-                                <label for="user-female"> 
-                                    <img src="/assets/female.svg" alt="Vrouwelijk geslacht icoon">
-                                </label>
-                            </div>
+                <div class="card-body">
+                    <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" formControlName="name">
+                            <span class="text-danger"
+                                *ngIf="(registerFormControl.name.touched || submitted) && registerFormControl.name.errors?.required">
+                                Name is required
+                            </span>
                         </div>
-                    </div>
-                
-                <!-- DATE GENDER SELECT -->
-    
-                    <div class="gender-wrapper">
-                        <label>Ik zoek</label>
-                        <div>
-                            <div class="radio-item">
-                                <input type="radio"
-                                name="date-geslacht" 
-                                value="date-male"
-                                id="date-male">
-                                <label for="date-male">
-                                    <img src="/assets/male.svg" alt="Mannelijk geslacht icoon">
-                                </label>
-                            </div>
-        
-                            <div class="radio-item radio-item-two">
-                                <input type="radio"
-                                name="date-geslacht"
-                                value="date-female"
-                                id="date-female">
-                                <label for="date-female"> 
-                                    <img src="/assets/female.svg" alt="Vrouwelijk geslacht icoon">
-                                </label>
-                            </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" class="form-control" formControlName="email">
+                            <span class="text-danger"
+                                *ngIf="(registerFormControl.email.touched || submitted) && registerFormControl.email.errors?.required">
+                                Email is required
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="registerFormControl.email.touched && registerFormControl.email.errors?.email">
+                                Enter a valid email address
+                            </span>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label>User Name</label>
+                            <input type="text" class="form-control" formControlName="username">
+                            <span class="text-danger"
+                                *ngIf="(registerFormControl.username.touched || submitted) && registerFormControl.username.errors?.required">
+                                User Name is required
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="registerFormControl.username.touched && registerFormControl.username.errors?.userNameNotAvailable">
+                                User Name is not available
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" formControlName="password">
+                            <span class="text-danger"
+                                *ngIf="(registerFormControl.password.touched || submitted) && registerFormControl.password.errors?.required">
+                                Password is required
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="registerFormControl.password.touched && registerFormControl.password.errors?.invalidPassword">
+                                Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
+                                letter and 1 number
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input type="password" class="form-control" formControlName="confirmPassword">
+                            <span class="text-danger"
+                                *ngIf="(registerFormControl.confirmPassword.touched || submitted)&& registerFormControl.confirmPassword.errors?.required">
+                                Confirm Password is required
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="registerFormControl.confirmPassword.touched && registerFormControl.confirmPassword.errors?.passwordMismatch">
+                                Passwords doesnot match
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Register</button>
+                        </div>
+                    </form>
                 </div>
-                </div>
-        
-                <!-- <div class="login-details-wrapper">
-                    <div class="logged-state-wrapper">
-                        <input type="checkbox" id="save-login">
-                        <label for="save-login">Ingelogd blijven</label>
-                    </div>
-            
-                    <a href="#">Wachtwoord vergeten?</a>
-                </div> -->
-        
-                <button type="submit" class="form-submit-btn">Registreer</button>
-        
-            </form> 
+            </div>
         </div>
-
-    </section>
-</div><!-- div bg-->
-
-
+    </div>
+</div>
