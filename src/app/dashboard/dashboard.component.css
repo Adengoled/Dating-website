@@ -7,11 +7,13 @@
   margin-top: 50%;
 }
 
-.logo-content {
-  color: var(--white);
+.logo-content a {
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+.logo-content a:hover, .welcome-back a:hover {
+  background: none;
 }
 
 .logo-content span {
@@ -66,19 +68,53 @@ svg {
   height: 25px;
 }
 
+.welcome-back a {
+  position: absolute;
+  color: var(--white);
+  bottom: 0;
+  left: 0;
+  width: 240px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.welcome-back div {
+  display: flex;
+  flex-direction: column;
+}
+
+.welcome-back div span:last-child {
+  font-size: 20px;
+  inline-size: 150px;
+  /*om lange namen naar volgende lijn te overbrengen: */
+  overflow-wrap: break-word;
+  hyphens:auto;
+}
+
+.welcome-back img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+
+
 /*DASHBOARD HEADER*/
 
 .dashboard-header ul {
   position: relative;
   display: flex;
   width: 95%;
-  padding: 5px;
-  margin-right: 2%;
+  padding: 5px 2.5rem 5px 50%;
+  /* margin-right: 2%; */
 }
 
 .dashboard-header li {
   position: relative;
-  margin: auto;
   text-transform: uppercase;
 }
 
@@ -109,10 +145,10 @@ svg {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-  /* position: fixed; */
+  position: fixed;
   top: 0;
   right: 0;
-  /* z-index: 100000; */
+  z-index: 100000;
   width: 87.5%;
   height: 100px;
 }
