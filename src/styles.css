@@ -688,3 +688,15 @@ input[type="radio"]{
 .user-photo{
     width: 100%;
 }
+
+
+/* VALIDATION ERRORS */
+
+.error-text{
+    color: red;
+    font-size: 2rem;
+}
+
+.ng-invalid:input{
+    border: 1px solid red;
+}

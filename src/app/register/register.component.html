@@ -1,7 +1,6 @@
 <div class="bg">
     <app-landing-header></app-landing-header>
 
-
     <section class="register-section-wrapper">
         <button class="link-btn">
             <a href="/login"><span>Al ingeschreven?</span> Klik hier om aan te melden</a>
@@ -9,25 +8,30 @@
 
         <!-- LOGIN FORMULIER -->
         <div class="form-wrapper register-wrapper">
-            <form action="http://localhost/phpdate/better-love/Dating-website/database/create.php" method="POST">
+            <form [formGroup]="registerForm">
                 <div class="input-wrapper">
                     <label for="profielnaam">Uw profielnaam</label>
-                    <input type="text" id="profielnaam" name="name" placeholder="Profielnaam" required>
+                    <input type="text" id="profielnaam" name="name" placeholder="Profielnaam" formControlName="name" class="form-control" required >
+                    <small *ngIf="name.invalid" class="error-text">Geen geldige profielnaam</small>
                 </div>
 
                 <div class="input-wrapper">
                     <label for="profielnaam">E-mailadres</label>
-                    <input type="email" id="email" name="email" placeholder="voorbeeld@email.com" required>
+                    <input data-error="Geen geldig paswoord" type="email" id="email" name="email"  placeholder="voorbeeld@email.com" required formControlName="email">
                 </div>
 
                 <div class="input-wrapper">
                     <label for="wachtwoord">Wachtwoord</label>
                     <div class="pw-wrapper">
-                        <input src="/assets/eye-o.svg" type="password" id="wachtwoord" name="ww"
-                            placeholder="Geef wachtwoord in" required>
-                        <!-- <img src="img/eye-o.svg" id="show-pw" title="toon paswoord" onClick="togglePW()"> -->
+                        <input type={{type}} id="wachtwoord" name="ww"
+                            placeholder="Geef wachtwoord in" required formControlName="wachtwoord">
+
+                        <img src={{eyeImg}} id="eye" title="toon paswoord" (click)="togglePW()" >
                     </div>
                 </div>
+
+                <p>Form Status: {{ registerForm.status }}</p>
+                
 
                 <div class="input-wrapper">
                     <div class="gender-flex">
@@ -35,14 +39,14 @@
                             <label>Ik ben</label>
                             <div>
                                 <div class="radio-item">
-                                    <input type="radio" name="user-geslacht" value="user-male" id="user-male">
+                                    <input type="radio" name="user-geslacht" value="user-male" id="user-male" formControlName="user-geslacht">
                                     <label for="user-male">
                                         <img src="/assets/male.svg" alt="Mannelijk geslacht icoon">
                                     </label>
                                 </div>
 
                                 <div class="radio-item radio-item-two">
-                                    <input type="radio" name="user-geslacht" value="user-female" id="user-female">
+                                    <input type="radio" name="user-geslacht" value="user-female" id="user-female" formControlName="user-geslacht">
                                     <label for="user-female">
                                         <img src="/assets/female.svg" alt="Vrouwelijk geslacht icoon">
                                     </label>
@@ -56,7 +60,7 @@
                             <label>Ik zoek</label>
                             <div>
                                 <div class="radio-item">
-                                    <input type="radio" name="date-geslacht" value="date-male" id="date-male">
+                                    <input type="radio" name="date-geslacht" value="date-male" id="date-male" formControlName="date-geslacht">
                                     <label for="date-male">
                                         <img src="/assets/male.svg" alt="Mannelijk geslacht icoon">
                                     </label>
@@ -73,12 +77,14 @@
                     </div>
                 </div>
 
+            
+
                 <div class="input-wrapper">
                     <label for="profielnaam">Geboortedatum</label>
-                    <input type="text" id="geboortedatum" name="" placeholder="MM/DD/JJ" required>
+                    <input type="text" id="geboortedatum" name="geboortedatum" placeholder="MM/DD/JJ" required formControlName="geboortedatum">
                 </div>
 
-                <button type="submit" class="form-submit-btn">Begin met daten</button>
+                <button type="submit" class="form-submit-btn" [disabled]="!registerForm.valid" (ngSubmit)="onSubmit()">Begin met daten</button>
 
                 <div class="consent-text">
                     <small class="consent-text">Door te klikken ga je akkoord met onze <a
@@ -86,6 +92,8 @@
                 </div>
 
             </form>
+
+
         </div>
 
     </section>
