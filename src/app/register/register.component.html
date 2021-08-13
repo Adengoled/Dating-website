@@ -1,75 +1,135 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 mx-auto">
-            <div class="card">
-                <div class="card-header">
-                    <h3>Angular Reactive Form</h3>
+<div class="bg">
+    <!-- <app-landing-header></app-landing-header> -->
+
+    <section class="register-section-wrapper">
+        <button class="link-btn">
+            <a href="/login"><span>Al ingeschreven?</span> Klik hier om aan te melden</a>
+        </button>
+
+        <!-- LOGIN FORMULIER -->
+        <div class="form-wrapper register-wrapper">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="input-wrapper">
+                    <label for="profielnaam">Uw profielnaam</label>
+                    <input type="text" id="profielnaam" name="name" placeholder="Profielnaam" formControlName="name" class="form-control" required >
+                    <small *ngIf="(registerFormControl.name.touched || submitted) && registerFormControl.name.errors?.required" class="error-text">Geen geldige profielnaam</small>
                 </div>
-                <div class="card-body">
-                    <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" class="form-control" formControlName="name">
-                            <span class="text-danger"
-                                *ngIf="(registerFormControl.name.touched || submitted) && registerFormControl.name.errors?.required">
-                                Name is required
-                            </span>
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" class="form-control" formControlName="email">
-                            <span class="text-danger"
-                                *ngIf="(registerFormControl.email.touched || submitted) && registerFormControl.email.errors?.required">
-                                Email is required
-                            </span>
-                            <span class="text-danger"
-                                *ngIf="registerFormControl.email.touched && registerFormControl.email.errors?.email">
-                                Enter a valid email address
-                            </span>
-                        </div>
-                        <div class="form-group">
-                            <label>User Name</label>
-                            <input type="text" class="form-control" formControlName="username">
-                            <span class="text-danger"
-                                *ngIf="(registerFormControl.username.touched || submitted) && registerFormControl.username.errors?.required">
-                                User Name is required
-                            </span>
-                            <span class="text-danger"
-                                *ngIf="registerFormControl.username.touched && registerFormControl.username.errors?.userNameNotAvailable">
-                                User Name is not available
-                            </span>
-                        </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" class="form-control" formControlName="password">
-                            <span class="text-danger"
-                                *ngIf="(registerFormControl.password.touched || submitted) && registerFormControl.password.errors?.required">
-                                Password is required
-                            </span>
-                            <span class="text-danger"
-                                *ngIf="registerFormControl.password.touched && registerFormControl.password.errors?.invalidPassword">
-                                Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
-                                letter and 1 number
-                            </span>
-                        </div>
-                        <div class="form-group">
-                            <label>Confirm Password</label>
-                            <input type="password" class="form-control" formControlName="confirmPassword">
-                            <span class="text-danger"
-                                *ngIf="(registerFormControl.confirmPassword.touched || submitted)&& registerFormControl.confirmPassword.errors?.required">
-                                Confirm Password is required
-                            </span>
-                            <span class="text-danger"
-                                *ngIf="registerFormControl.confirmPassword.touched && registerFormControl.confirmPassword.errors?.passwordMismatch">
-                                Passwords doesnot match
-                            </span>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-success">Register</button>
-                        </div>
-                    </form>
+
+                <div class="input-wrapper">
+                    <label for="profielnaam">E-mailadres</label>
+                    <input data-error="Geen geldig paswoord" type="email" id="email" name="email"  placeholder="voorbeeld@email.com" required formControlName="email">
+                    <small class="text-danger"
+                        *ngIf="(registerFormControl.email.touched || submitted) && registerFormControl.email.errors?.required">
+                        Email is required
+                    </small>
+                    <small class="text-danger"
+                        *ngIf="registerFormControl.email.touched && registerFormControl.email.errors?.email">
+                        Enter a valid email address
+                    </small>
                 </div>
-            </div>
+
+                <div class="input-wrapper">
+                    <label for="wachtwoord">Wachtwoord</label>
+                    <div class="pw-wrapper">
+                        <input type={{type}} id="wachtwoord" name="ww"
+                            placeholder="Geef wachtwoord in" required formControlName="password">
+
+                        <img src={{eyeImg}} id="eye" title="toon paswoord" (click)="togglePW()" >
+                        <small class="text-danger"
+                            *ngIf="(registerFormControl.password.touched || submitted) && registerFormControl.password.errors?.required">
+                            Password is required
+                        </small>
+                        <small class="text-danger"
+                            *ngIf="registerFormControl.password.touched && registerFormControl.password.errors?.invalidPassword">
+                            Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
+                            letter and 1 number
+                        </small>
+                    </div>
+                </div>
+
+                <!-- <div class="input-wrapper">
+                    <label for="wachtwoord">Bevestig wachtwoord</label>
+                    <div class="pw-wrapper">
+                        <input type={{type}} id="wachtwoord" name="ww"
+                            placeholder="Geef wachtwoord in" required formControlName="confirmPassword">
+
+                        <img src={{eyeImg}} id="eye" title="toon paswoord" (click)="togglePW()" >
+                        <small class="text-danger"
+                        *ngIf="(registerFormControl.confirmPassword.touched || submitted)&& registerFormControl.confirmPassword.errors?.required">
+                        Confirm Password is required
+                    </small>
+                    <small class="text-danger"
+                        *ngIf="registerFormControl.confirmPassword.touched && registerFormControl.confirmPassword.errors?.passwordMismatch">
+                        Passwords doesnot match
+                    </small>
+                    </div>
+                </div> -->
+
+                <p>Form Status: {{ registerForm.status }}</p>
+                
+
+                <div class="input-wrapper">
+                    <div class="gender-flex">
+                        <div class="gender-wrapper">
+                            <label>Ik ben</label>
+                            <div>
+                                <div class="radio-item">
+                                    <input type="radio" name="usergeslacht" value="user-male" id="user-male" formControlName="usergeslacht">
+                                    <label for="user-male">
+                                        <img src="/assets/male.svg" alt="Mannelijk geslacht icoon">
+                                    </label>
+                                </div>
+
+                                <div class="radio-item radio-item-two">
+                                    <input type="radio" name="usergeslacht" value="user-female" id="user-female" formControlName="usergeslacht">
+                                    <label for="user-female">
+                                        <img src="/assets/female.svg" alt="Vrouwelijk geslacht icoon">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- DATE GENDER SELECT -->
+
+                        <div class="gender-wrapper">
+                            <label>Ik zoek</label>
+                            <div>
+                                <div class="radio-item">
+                                    <input type="radio" name="dategeslacht" value="date-male" id="date-male" formControlName="dategeslacht">
+                                    <label for="date-male">
+                                        <img src="/assets/male.svg" alt="Mannelijk geslacht icoon">
+                                    </label>
+                                </div>
+
+                                <div class="radio-item radio-item-two">
+                                    <input type="radio" name="dategeslacht" value="date-female" id="date-female">
+                                    <label for="date-female">
+                                        <img src="/assets/female.svg" alt="Vrouwelijk geslacht icoon">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            
+
+                <div class="input-wrapper">
+                    <label for="profielnaam">Geboortedatum</label>
+                    <input type="text" id="geboortedatum" name="geboortedatum" placeholder="MM/DD/JJ" required formControlName="geboortedatum">
+                </div>
+
+                <button type="submit" class="form-submit-btn" [disabled]="!registerForm.valid" (ngSubmit)="onSubmit()">Begin met daten</button>
+
+                <div class="consent-text">
+                    <small class="consent-text">Door te klikken ga je akkoord met onze <a
+                            href="">Gebruikersovereenkomst</a></small>
+                </div>
+
+            </form>
+
+
         </div>
-    </div>
+
+    </section>
 </div>
