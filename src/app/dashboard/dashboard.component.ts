@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  // active = false;
+  // makeActive(active: any){
+  //   this.active = true;
+  // }
+
   constructor() { }
 
   ngOnInit(): void {

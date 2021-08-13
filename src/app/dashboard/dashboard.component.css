@@ -171,10 +171,5 @@ svg {
   grid-area: main;
   background-color: var(--white);
   border-top-left-radius: 30px;
-  /* border-bottom-left-radius: 30px; */
 }
 
-/* .footer {
-  grid-area: footer;
-  background-color: var(--black);
-} */
