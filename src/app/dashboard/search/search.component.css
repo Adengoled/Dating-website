@@ -1,3 +1,55 @@
+/*PROFILES FILTER*/
+
+.profiles-filter ul {
+   display: flex;
+   /* width: 95%; */
+}
+ 
+.profiles-filter li {
+   height: 50px;
+   line-height: 50px;
+   width: 10%;
+   margin: 0 5px;
+   list-style: none;
+}
+ 
+.profiles-filter {
+   position: sticky;
+   z-index: 100000;
+   top: 100px;
+   right: 0;
+   width: 100%;
+   height: 100px;
+   background-color: var(--white);
+   opacity: 1;
+   border-top-left-radius: 30px;
+   padding: 25px 2.5rem 25px 2.5rem;
+}
+
+ .profiles-filter *{
+   position: relative;
+ }
+ 
+ .profiles-filter li span {
+   margin: auto;
+ }
+
+ .profiles-filter a {
+   color: var(--black);
+   display: flex;
+   align-items: center;
+   text-decoration: none;
+   transition: all 0.4 ease;
+   border: var(--black) solid 2px;
+   border-radius: 60px;
+ }
+ 
+ .profiles-filter a:hover {
+   background-color: var(--prim);
+   border-radius: 60px;
+   color: var(--white);
+ }
+
 /* USER GRID SECTION */
 
 /* main{
@@ -8,7 +60,7 @@
    display: grid;
    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
    grid-gap: 1rem;
-   padding: 1.25rem;
+   padding: 0 2.5rem 2.5rem 2.5rem;
 }
 
 /* CARDS STYLING */
