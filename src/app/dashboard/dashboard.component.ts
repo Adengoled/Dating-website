@@ -6,6 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  headerlinks = [
+    {linkUrl: "#", linkName: "Advies"},
+    {linkUrl: "#", linkName: "Artikelen"},
+    {linkUrl: "#", linkName: "Statistieken"},
+    {linkUrl: "#", linkName: "Succesverhalen"}
+  ];
 
   // active = false;
   // makeActive(active: any){
