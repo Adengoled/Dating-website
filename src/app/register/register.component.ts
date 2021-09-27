@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CustomvalidationService } from '../services/customvalidation.service';
 
 @Component({
   selector: 'app-register',
@@ -9,18 +10,23 @@ import { FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
 
 export class RegisterComponent implements OnInit {
 
-  registerForm!:FormGroup;
+  registerForm:FormGroup;
 
-
-  // constructor(private fb: FormGroup){}
+  constructor(
+    private customValidator: CustomvalidationService
+  ) { }
 
   ngOnInit(): void {
 
     this.registerForm = new FormGroup({
-      'name': new FormControl('test', [Validators.required, Validators.minLength(3)]),
-
+      'name': new FormControl(null,
+        [
+         Validators.required, 
+         Validators.minLength(2),
+        //  this.customValidator.userNameValidator.bind(this.customValidator)
+        ]
+         ),
       'email': new FormControl(null,[Validators.required, Validators.email]),
-
       'wachtwoord': new FormControl(null,
          [
           Validators.required, 
@@ -28,27 +34,36 @@ export class RegisterComponent implements OnInit {
           Validators.minLength(8)
         ]
         ),
-
       'user-geslacht': new FormControl(null, Validators.required),
-
       'date-geslacht': new FormControl(null, Validators.required),
-
       'geboortedatum': new FormControl(null, Validators.required)
     })
 
-    // *ngIf="registerForm.get('name').invalid"
-
   }
 
- // getters
-  get name() { return this.registerForm.get('name'); }
-  get wachtwoord() { return this.registerForm.get('wachtwoord'); }
+ // GETTERS
+  // get name() { return this.registerForm.get('name'); }
+  // get email() { return this.registerForm.get('email') }
+  // get wachtwoord() { return this.registerForm.get('wachtwoord'); }
 
 
-  // togglePW function
+  //PASSWORD VALIDATION ERRORS
+  // validationArr:any;
+  password:string;
+  errorImg:string = "assets/x-pw.svg";
+  validImg:string = "assets/check.svg";  
+  validateCap:string = this.errorImg; 
+  validateLow:string = this.errorImg; 
+  validateNumber:string = this.errorImg; 
 
-  // @ViewChild('wachtwoord') wachtwoord!: ElementRef;
+  validatePW(e: any) {
+    this.password = e.target.value;
+      this.validateCap = (this.password.search(/[A-Z]/) > -1 ) ?  this.validImg : this.errorImg ,
+      this.validateLow = (this.password.search(/[a-z]/) > -1 ) ? this.validImg : this.errorImg ,
+      this.validateNumber = (this.password.search(/[0-9]/) > -1 ) ?  this.validImg : this.errorImg 
+  }
 
+  // TOGGLE PASSWORD VISIBILITY
   type:string = "password";
   eyeImg:string = "assets/eye-o.svg";
 
@@ -62,36 +77,8 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  // SUBMIT FORM 
   onSubmit(){
-    console.log("test");
+    alert("form werkt");
   }
 }
-
-
-
-
-
-
-// Alternative form
-
-    // this.registerForm = this.fb.group({
-    //  name: 
-
-    // email
-    // email: [ '', [
-      // Validators.required,
-      // Validators.email   
-    // ]],
-
-    // password with regex for min 8 characters, 1 capital, 1 lowercase and one number
-    // password: ['', [
-    //   Validators.required,
-    //   Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')
-    // ]],
-
-    // geboortedatum: ['', [
-    //   Validators.required,
-    //   Validators.
-    // ]]
-
-    // })

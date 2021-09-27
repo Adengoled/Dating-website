@@ -5,40 +5,45 @@
         <button class="link-btn link-btn-">
             <a href="/register"><span>Nog geen account?</span> Klik hier om in te schrijven</a>
         </button>
-       
+
         <!-- LOGIN FORMULIER -->
         <div class="form-wrapper login-form-wrapper">
-            <form action="http://localhost/phpdate/better-love/Dating-website/database/login.php" method="POST">
+            <form [formGroup]="loginForm"
+                action="http://localhost/phpdate/better-love/Dating-website/database/login.php" method="POST">
                 <!-- <div class="input-wrapper">
                     <label for="profielnaam" >Uw profielnaam</label> 
                     <input type="text" id="profielnaam" name="" placeholder="Profielnaam" required>
                 </div> -->
-        
+
                 <div class="input-wrapper">
-                    <label for="profielnaam" >E-mailadres</label> 
-                    <input type="email" id="email" name="email" placeholder="voorbeeld@email.com" required>
+                    <label for="email">E-mailadres</label>
+                    <input type="email" id="email" name="email" placeholder="voorbeeld@email.com"
+                        formControlName="email" required>
                 </div>
-        
+
                 <div class="input-wrapper">
-                    <label for="wachtwoord" >Wachtwoord</label> 
+                    <label for="wachtwoord">Wachtwoord</label>
                     <div class="pw-wrapper">
-                        <input src="img/eye-o.svg" type="password" id="wachtwoord" name="ww" placeholder="Geef wachtwoord in" required>
-                        <!-- <img src="img/eye-o.svg" id="show-pw" title="toon paswoord" onClick="togglePW()"> -->
+                        <input type={{type}} id="wachtwoord" name="ww" placeholder="Geef wachtwoord in"
+                            formControlName="wachtwoord" required>
+                        <img src="{{eyeImg}}" id="show-pw" title="toon paswoord" (click)="togglePW()">
                     </div>
                 </div>
-        
+
+                <p>Form Status: {{ loginForm.status }}</p>
+
                 <div class="login-details-wrapper">
                     <div class="logged-state-wrapper">
                         <input type="checkbox" id="save-login">
                         <label for="save-login">Ingelogd blijven</label>
                     </div>
-            
+
                     <a href="#">Wachtwoord vergeten?</a>
                 </div>
-        
+
                 <button type="submit" class="form-submit-btn">Inloggen</button>
-        
-            </form> 
+
+            </form>
         </div>
 
     </section>

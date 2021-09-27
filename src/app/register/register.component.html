@@ -8,30 +8,59 @@
 
         <!-- LOGIN FORMULIER -->
         <div class="form-wrapper register-wrapper">
-            <form [formGroup]="registerForm">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" autocomplete="off">
                 <div class="input-wrapper">
-                    <label for="profielnaam">Uw profielnaam</label>
-                    <input type="text" id="profielnaam" name="name" placeholder="Profielnaam" formControlName="name" class="form-control" required >
-                    <small *ngIf="name.invalid" class="error-text">Geen geldige profielnaam</small>
+                    <label
+                        class="{{ registerForm.controls.name.invalid && registerForm.controls.name.touched  ? 'error-label' : null }}"
+                        for="profielnaam">Uw profielnaam</label>
+                    <input type="text" formControlName="name" placeholder="Geef profielnaam in">
+                    <small *ngIf="registerForm.controls.name.invalid && registerForm.controls.name.touched"
+                        class="error-small">Geen geldige profielnaam</small>
                 </div>
 
-                <div class="input-wrapper">
-                    <label for="profielnaam">E-mailadres</label>
-                    <input data-error="Geen geldig paswoord" type="email" id="email" name="email"  placeholder="voorbeeld@email.com" required formControlName="email">
+                <div class="input-wrapper" >
+                    <label
+                        class="{{ registerForm.controls.email.invalid && registerForm.controls.email.touched  ? 'error-label' : null }}"
+                        for="profielnaam">E-mailadres</label>
+                    <input type="email" id="email" name="email" placeholder="voorbeeld@email.com" required
+                        formControlName="email">
+                    <small *ngIf="registerForm.controls.email.invalid && registerForm.controls.email.touched" class="error-small">Geen geldig
+                        e-mailadres</small>
                 </div>
 
-                <div class="input-wrapper">
-                    <label for="wachtwoord">Wachtwoord</label>
-                    <div class="pw-wrapper">
-                        <input type={{type}} id="wachtwoord" name="ww"
-                            placeholder="Geef wachtwoord in" required formControlName="wachtwoord">
+                <p>Email Status: {{ registerForm.controls.email.status }}</p>
 
-                        <img src={{eyeImg}} id="eye" title="toon paswoord" (click)="togglePW()" >
+                <div class="input-wrapper">
+                    <label
+                        class="{{ registerForm.controls.wachtwoord.invalid && registerForm.controls.wachtwoord.touched  ? 'error-label' : null }} ww-input"
+                        for="wachtwoord">Wachtwoord</label>
+                    <div class="{{ registerForm.controls.wachtwoord.invalid && registerForm.controls.wachtwoord.touched  ? 'error-border' : null }} pw-wrapper">
+                        <input class="ww-input" #pwCharacterCount (keyup)="validatePW($event)" type={{type}} id="wachtwoord" name="ww" placeholder="Geef wachtwoord in" required formControlName="wachtwoord" >
+
+                        <img src={{eyeImg}} id="eye" title="toon paswoord" (click)="togglePW()">
+                    </div>
+
+                    <div class="pw-validation">
+                        <p>Nog {{ 8 - pwCharacterCount.value.length <= 0 ? 0 : 8 - pwCharacterCount.value.length }}
+                            tekens resterend</p>
+                        <ul>
+                            <div class="validation-wrapper">
+                                <!-- <li><img src="{{ validationArr[0] ? validImg : errorImg }}">Hoofdletter</li> -->
+                                <li><img src="{{ validateCap }}">Hoofdletter</li>
+                            </div>
+                            <div class="validation-wrapper">
+                                <!-- <li><img src="{{ validationArr[1] ? validImg : errorImg }}">Kleine letter</li>  -->
+                                <li><img src="{{ validateLow }}">Kleine letter</li> 
+                            </div>
+                            <div class="validation-wrapper">
+                                <!-- <li><img src="{{ validationArr[2] ? validImg : errorImg }}">Cijfer</li> -->
+                                <li><img src="{{ validateNumber }}">Cijfer</li>
+                            </div>
+                        </ul>
                     </div>
                 </div>
 
                 <p>Form Status: {{ registerForm.status }}</p>
-                
 
                 <div class="input-wrapper">
                     <div class="gender-flex">
@@ -39,14 +68,23 @@
                             <label>Ik ben</label>
                             <div>
                                 <div class="radio-item">
-                                    <input type="radio" name="user-geslacht" value="user-male" id="user-male" formControlName="user-geslacht">
+                                    <input type="radio"
+                                           name="user-geslacht" 
+                                           value="user-male" 
+                                           id="user-male"
+                                            formControlName="user-geslacht">
                                     <label for="user-male">
-                                        <img src="/assets/male.svg" alt="Mannelijk geslacht icoon">
+                                        <img src="/assets/male.svg" 
+                                             alt="Mannelijk geslacht icoon">
                                     </label>
                                 </div>
 
                                 <div class="radio-item radio-item-two">
-                                    <input type="radio" name="user-geslacht" value="user-female" id="user-female" formControlName="user-geslacht">
+                                    <input type="radio"
+                                           name="user-geslacht"
+                                           value="user-female"
+                                           id="user-female"
+                                            formControlName="user-geslacht">
                                     <label for="user-female">
                                         <img src="/assets/female.svg" alt="Vrouwelijk geslacht icoon">
                                     </label>
@@ -60,7 +98,8 @@
                             <label>Ik zoek</label>
                             <div>
                                 <div class="radio-item">
-                                    <input type="radio" name="date-geslacht" value="date-male" id="date-male" formControlName="date-geslacht">
+                                    <input type="radio" name="date-geslacht" value="date-male" id="date-male"
+                                        formControlName="date-geslacht">
                                     <label for="date-male">
                                         <img src="/assets/male.svg" alt="Mannelijk geslacht icoon">
                                     </label>
@@ -77,22 +116,21 @@
                     </div>
                 </div>
 
-            
-
                 <div class="input-wrapper">
                     <label for="profielnaam">Geboortedatum</label>
-                    <input type="text" id="geboortedatum" name="geboortedatum" placeholder="MM/DD/JJ" required formControlName="geboortedatum">
+                    <input type="text" id="geboortedatum" name="geboortedatum" placeholder="MM/DD/JJ" required
+                        formControlName="geboortedatum">
+                        <small *ngIf="registerForm.controls.geboortedatum.invalid && registerForm.controls.geboortedatum.touched"
+                        class="error-small">Geen geldige geboortedatum</small>
                 </div>
 
-                <button type="submit" class="form-submit-btn" [disabled]="!registerForm.valid" (ngSubmit)="onSubmit()">Begin met daten</button>
+                <button type="submit" class="form-submit-btn">Begin met daten</button>
 
                 <div class="consent-text">
                     <small class="consent-text">Door te klikken ga je akkoord met onze <a
                             href="">Gebruikersovereenkomst</a></small>
                 </div>
-
             </form>
-
 
         </div>
 
