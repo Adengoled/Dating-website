@@ -1,101 +1,138 @@
 <div class="bg">
-    <section class="login-wrapper">
-        <button class="login-link-btn">
-            <a href="/login"><span>Al een account?</span> Klik hier om aan te melden</a>
+    <app-landing-header></app-landing-header>
+
+    <section class="register-section-wrapper">
+        <button class="link-btn">
+            <a href="/login"><span>Al ingeschreven?</span> Klik hier om aan te melden</a>
         </button>
-       
+
         <!-- LOGIN FORMULIER -->
-        <div class="form-wrapper">
-            <form action="http://localhost/phpdate/better-love/Dating-website/database/create.php" method="POST">
+        <div class="form-wrapper register-wrapper">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" autocomplete="off">
                 <div class="input-wrapper">
-                    <label for="profielnaam" >Uw profielnaam</label> 
-                    <input type="text" id="profielnaam" name="name" placeholder="Profielnaam" required>
+                    <label
+                        class="{{ registerForm.controls.name.invalid && registerForm.controls.name.touched  ? 'error-label' : null }}"
+                        for="profielnaam">Uw profielnaam</label>
+                    <input type="text" formControlName="name" placeholder="Geef profielnaam in">
+                    <small *ngIf="registerForm.controls.name.invalid && registerForm.controls.name.touched"
+                        class="error-small">Geen geldige profielnaam</small>
                 </div>
-        
-                <div class="input-wrapper">
-                    <label for="profielnaam" >E-mailadres</label> 
-                    <input type="email" id="email" name="email" placeholder="voorbeeld@email.com" required>
+
+                <div class="input-wrapper" >
+                    <label
+                        class="{{ registerForm.controls.email.invalid && registerForm.controls.email.touched  ? 'error-label' : null }}"
+                        for="profielnaam">E-mailadres</label>
+                    <input type="email" id="email" name="email" placeholder="voorbeeld@email.com" required
+                        formControlName="email">
+                    <small *ngIf="registerForm.controls.email.invalid && registerForm.controls.email.touched" class="error-small">Geen geldig
+                        e-mailadres</small>
                 </div>
-        
+
+                <p>Email Status: {{ registerForm.controls.email.status }}</p>
+
                 <div class="input-wrapper">
-                    <label for="wachtwoord" >Wachtwoord</label> 
-                    <div class="pw-wrapper">
-                        <input src="/assets/eye-o.svg" type="password" id="wachtwoord" name="ww" placeholder="Geef wachtwoord in" required>
-                        <!-- <img src="img/eye-o.svg" id="show-pw" title="toon paswoord" onClick="togglePW()"> -->
+                    <label
+                        class="{{ registerForm.controls.wachtwoord.invalid && registerForm.controls.wachtwoord.touched  ? 'error-label' : null }} ww-input"
+                        for="wachtwoord">Wachtwoord</label>
+                    <div class="{{ registerForm.controls.wachtwoord.invalid && registerForm.controls.wachtwoord.touched  ? 'error-border' : null }} pw-wrapper">
+                        <input class="ww-input" #pwCharacterCount (keyup)="validatePW($event)" type={{type}} id="wachtwoord" name="ww" placeholder="Geef wachtwoord in" required formControlName="wachtwoord" >
+
+                        <img src={{eyeImg}} id="eye" title="toon paswoord" (click)="togglePW()">
+                    </div>
+
+                    <div class="pw-validation">
+                        <p>Nog {{ 8 - pwCharacterCount.value.length <= 0 ? 0 : 8 - pwCharacterCount.value.length }}
+                            tekens resterend</p>
+                        <ul>
+                            <div class="validation-wrapper">
+                                <!-- <li><img src="{{ validationArr[0] ? validImg : errorImg }}">Hoofdletter</li> -->
+                                <li><img src="{{ validateCap }}">Hoofdletter</li>
+                            </div>
+                            <div class="validation-wrapper">
+                                <!-- <li><img src="{{ validationArr[1] ? validImg : errorImg }}">Kleine letter</li>  -->
+                                <li><img src="{{ validateLow }}">Kleine letter</li> 
+                            </div>
+                            <div class="validation-wrapper">
+                                <!-- <li><img src="{{ validationArr[2] ? validImg : errorImg }}">Cijfer</li> -->
+                                <li><img src="{{ validateNumber }}">Cijfer</li>
+                            </div>
+                        </ul>
                     </div>
                 </div>
-        
+
+                <p>Form Status: {{ registerForm.status }}</p>
+
                 <div class="input-wrapper">
-                <div class="gender-flex">
-                    <div class="gender-wrapper">
-                        <label>Ik ben</label>
-                        <div>
-                            <div class="radio-item">
-                                <input type="radio"
-                                name="user-geslacht" 
-                                value="user-male"
-                                id="user-male">
-                                <label for="user-male">
-                                    <img src="/assets/male.svg" alt="Mannelijk geslacht icoon">
-                                </label>
+                    <div class="gender-flex">
+                        <div class="gender-wrapper">
+                            <label>Ik ben</label>
+                            <div>
+                                <div class="radio-item">
+                                    <input type="radio"
+                                           name="user-geslacht" 
+                                           value="user-male" 
+                                           id="user-male"
+                                            formControlName="user-geslacht">
+                                    <label for="user-male">
+                                        <img src="/assets/male.svg" 
+                                             alt="Mannelijk geslacht icoon">
+                                    </label>
+                                </div>
+
+                                <div class="radio-item radio-item-two">
+                                    <input type="radio"
+                                           name="user-geslacht"
+                                           value="user-female"
+                                           id="user-female"
+                                            formControlName="user-geslacht">
+                                    <label for="user-female">
+                                        <img src="/assets/female.svg" alt="Vrouwelijk geslacht icoon">
+                                    </label>
+                                </div>
                             </div>
-        
-                            <div class="radio-item radio-item-two">
-                                <input type="radio"
-                                name="user-geslacht"
-                                value="user-female"
-                                id="user-female">    
-                                <label for="user-female"> 
-                                    <img src="/assets/female.svg" alt="Vrouwelijk geslacht icoon">
-                                </label>
+                        </div>
+
+                        <!-- DATE GENDER SELECT -->
+
+                        <div class="gender-wrapper">
+                            <label>Ik zoek</label>
+                            <div>
+                                <div class="radio-item">
+                                    <input type="radio" name="date-geslacht" value="date-male" id="date-male"
+                                        formControlName="date-geslacht">
+                                    <label for="date-male">
+                                        <img src="/assets/male.svg" alt="Mannelijk geslacht icoon">
+                                    </label>
+                                </div>
+
+                                <div class="radio-item radio-item-two">
+                                    <input type="radio" name="date-geslacht" value="date-female" id="date-female">
+                                    <label for="date-female">
+                                        <img src="/assets/female.svg" alt="Vrouwelijk geslacht icoon">
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                
-                <!-- DATE GENDER SELECT -->
-    
-                    <div class="gender-wrapper">
-                        <label>Ik zoek</label>
-                        <div>
-                            <div class="radio-item">
-                                <input type="radio"
-                                name="date-geslacht" 
-                                value="date-male"
-                                id="date-male">
-                                <label for="date-male">
-                                    <img src="/assets/male.svg" alt="Mannelijk geslacht icoon">
-                                </label>
-                            </div>
-        
-                            <div class="radio-item radio-item-two">
-                                <input type="radio"
-                                name="date-geslacht"
-                                value="date-female"
-                                id="date-female">
-                                <label for="date-female"> 
-                                    <img src="/assets/female.svg" alt="Vrouwelijk geslacht icoon">
-                                </label>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+
+                <div class="input-wrapper">
+                    <label for="profielnaam">Geboortedatum</label>
+                    <input type="text" id="geboortedatum" name="geboortedatum" placeholder="MM/DD/JJ" required
+                        formControlName="geboortedatum">
+                        <small *ngIf="registerForm.controls.geboortedatum.invalid && registerForm.controls.geboortedatum.touched"
+                        class="error-small">Geen geldige geboortedatum</small>
                 </div>
-        
-                <!-- <div class="login-details-wrapper">
-                    <div class="logged-state-wrapper">
-                        <input type="checkbox" id="save-login">
-                        <label for="save-login">Ingelogd blijven</label>
-                    </div>
-            
-                    <a href="#">Wachtwoord vergeten?</a>
-                </div> -->
-        
-                <button type="submit" class="form-submit-btn">Registreer</button>
-        
-            </form> 
+
+                <button type="submit" class="form-submit-btn">Begin met daten</button>
+
+                <div class="consent-text">
+                    <small class="consent-text">Door te klikken ga je akkoord met onze <a
+                            href="">Gebruikersovereenkomst</a></small>
+                </div>
+            </form>
+
         </div>
 
     </section>
-</div><!-- div bg-->
-
-
+</div>

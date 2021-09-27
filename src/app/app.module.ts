@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -9,6 +10,7 @@ import { SearchComponent } from './dashboard/search/search.component';
 import { SettingsComponent } from './dashboard/settings/settings.component';
 import { MessagesComponent } from './dashboard/messages/messages.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
+import { LandingHeaderComponent } from './landing-header/landing-header.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,7 @@ import { ProfileComponent } from './dashboard/profile/profile.component';
     RegisterComponent,
     LoginComponent,
     DashboardComponent,
+    LandingHeaderComponent,
     SearchComponent
   ],
   imports: [
@@ -33,6 +36,7 @@ import { ProfileComponent } from './dashboard/profile/profile.component';
             ]
         },
     ]),
+      ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

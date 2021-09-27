@@ -85,8 +85,6 @@ function sendMail($mail, $hash) {
   } else {
       echo "Mailer Error: " . $mail->ErrorInfo;
   }
-
-
 }
 
 ?>
