@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -19,7 +18,8 @@ import { LandingHeaderComponent } from './landing-header/landing-header.componen
     RegisterComponent,
     LoginComponent,
     DashboardComponent,
-    LandingHeaderComponent
+    LandingHeaderComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
