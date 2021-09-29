@@ -64,13 +64,13 @@
             </li>
         </ul>
 
-        <div class="welcome-back">
+        <div *ngFor="let item of ownAvatar" class="welcome-back">
             <!-- User wordt doorgestuurd naar zijn profielpagina gelijk andere users het zien -->
             <a href="#">
-                <img src="assets/users/profile3.jpg" alt="">
+                <img [src]="item.profielfoto" alt="">
                 <div>
                     <span>Welkom terug,</span>
-                    <span>Balthazar</span>
+                    <span>{{item.profielnaam}}</span>
                 </div>
             </a>
         </div>

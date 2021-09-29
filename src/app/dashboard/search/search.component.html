@@ -1,6 +1,6 @@
 <section class="profiles-filter">
     <ul>
-        <li *ngFor="let item of searchFilter" class>
+        <li *ngFor="let item of searchFilter">
             <a [routerLink]="item.link" routerLinkActive="filter-active">
                 <span>{{item.filter}}</span>
             </a>
