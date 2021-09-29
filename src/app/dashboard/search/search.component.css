@@ -45,9 +45,13 @@
  }
  
  .profiles-filter a:hover {
-   background-color: var(--prim);
    border-radius: 60px;
    color: var(--white);
+   background-color: var(--prim-light);
+ }
+
+ .filter-active {
+   background-color: var(--prim);
  }
 
 /* USER GRID SECTION */

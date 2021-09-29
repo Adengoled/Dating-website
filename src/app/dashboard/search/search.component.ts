@@ -17,12 +17,14 @@ export class SearchComponent implements OnInit {
 
   newProfiles: any;
   nearProfiles: any;
+  ownAvatar: any;
 
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
     this.getNewProfilesData();
     this.getNearProfilesData();
+    this.getOwnAvatarData();
   }
 
   getNewProfilesData() {
@@ -37,4 +39,10 @@ export class SearchComponent implements OnInit {
     });
   }
 
+  getOwnAvatarData() {
+    this.dataService.getOwnAvatar().subscribe(res => 
+      {
+        this.ownAvatar = res;
+      });
+  }
 }

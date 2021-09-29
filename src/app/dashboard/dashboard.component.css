@@ -44,11 +44,11 @@ a {
 }
 
 a:hover {
-  background-color: var(--prim);
+  background-color: var(--prim-light);
   border-radius: 5px;
 }
 
-.active {
+.active-link {
   background-color: var(--prim);
   border-radius: 5px;
 }
