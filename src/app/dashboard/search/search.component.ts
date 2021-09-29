@@ -9,34 +9,18 @@ import { DataService } from 'src/app/service/data.service';
 export class SearchComponent implements OnInit {
 
   searchFilter = [
-    {filter: "Nieuw"},
-    {filter: "Dichtbij"},
-    {filter: "Online"},
-    {filter: "Meer opties"}
+    {filter: "Nieuw", link: "nieuw"},
+    {filter: "Dichtbij", link: "dichtbij"},
+    {filter: "Online", link: "online"},
+    {filter: "Meer opties", link: "#"}
   ];
 
-  newProfiles: any;
-  nearProfiles: any;
   ownAvatar: any;
 
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.getNewProfilesData();
-    this.getNearProfilesData();
     this.getOwnAvatarData();
-  }
-
-  getNewProfilesData() {
-    this.dataService.getNewProfiles().subscribe(res => {
-      this.newProfiles = res;
-    });
-  }
-
-  getNearProfilesData() {
-    this.dataService.getNearProfiles().subscribe(res => {
-      this.nearProfiles = res;
-    });
   }
 
   getOwnAvatarData() {
