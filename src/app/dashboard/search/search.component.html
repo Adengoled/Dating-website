@@ -6,19 +6,19 @@
 
 <section class="user-profiles">
 
-    <div *ngFor="let profile of foundProfiles" class="card">
+    <div *ngFor="let profile of newProfiles" class="card" [style]="profile.profielfoto">
         <div class="card-content">
             <!-- <img class="user-photo" src="img/users/hortensia.jpg" alt="Profielfoto Hortensia"> -->
             <div class="user-details-container">
                 <div class="user-details">
-                    <h3>{{profile.name}},</h3><span class="age">{{profile.age}}</span>
+                    <h3>{{profile.profielnaam}},</h3><span class="age">{{profile.geboortedatum}}</span>
                 </div>
                 <img src="assets/online-dot.svg" alt="Online indicator">
             </div>
 
             <div class="locatie">
                 <img src="assets/location.svg" alt="Locatie icoon">
-                <p>{{profile.location}}</p>
+                <p>{{profile.locatie}}</p>
             </div>
 
             <div class="btn-container">

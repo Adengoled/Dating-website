@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/service/data.service';
 
 @Component({
   selector: 'app-search',
@@ -14,18 +15,26 @@ export class SearchComponent implements OnInit {
     {filter: "Meer opties"}
   ];
 
-  foundProfiles = [
-    {name: "Hortensia", age: "85", location: "Gingelom"},
-    {name: "Anastasya", age: "72", location: "Antwerpen"},
-    {name: "Betty", age: "67", location: "Gent"},
-    {name: "Marijke", age: "90", location: "Hasselt"},
-    {name: "Nina", age: "74", location: "Borgloon"}
-  ];
+  newProfiles: any;
+  nearProfiles: any;
 
-
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
+    this.getNewProfilesData();
+    this.getNearProfilesData();
+  }
+
+  getNewProfilesData() {
+    this.dataService.getNewProfiles().subscribe(res => {
+      this.newProfiles = res;
+    });
+  }
+
+  getNearProfilesData() {
+    this.dataService.getNearProfiles().subscribe(res => {
+      this.nearProfiles = res;
+    });
   }
 
 }

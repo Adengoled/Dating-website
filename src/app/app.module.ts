@@ -11,6 +11,7 @@ import { SettingsComponent } from './dashboard/settings/settings.component';
 import { MessagesComponent } from './dashboard/messages/messages.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import { LandingHeaderComponent } from './landing-header/landing-header.component';
+import { HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { LandingHeaderComponent } from './landing-header/landing-header.componen
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {path: '', component: LoginComponent},
       {path: 'login', component: LoginComponent},
