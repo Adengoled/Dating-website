@@ -3,39 +3,58 @@
 
     <section class="register-section-wrapper">
         <button class="link-btn">
-            <a href="/login"><span>Al ingeschreven?</span> Klik hier om aan te melden</a>
+            <a routerLink="/login"><span>Al ingeschreven?</span> Klik hier om aan te melden</a>
         </button>
 
         <!-- LOGIN FORMULIER -->
         <div class="form-wrapper register-wrapper">
-            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" autocomplete="off">
+            <form [formGroup]="registerForm" (submit)="onSubmit()" autocomplete="off">
                 <div class="input-wrapper">
-                    <label
-                        class="{{ registerForm.controls.name.invalid && registerForm.controls.name.touched  ? 'error-label' : null }}"
-                        for="profielnaam">Uw profielnaam</label>
-                    <input type="text" formControlName="name" placeholder="Geef profielnaam in">
-                    <small *ngIf="registerForm.controls.name.invalid && registerForm.controls.name.touched"
-                        class="error-small">Geen geldige profielnaam</small>
+
+                    <div class="label-wrapper">
+                        <label
+                            class="{{ registerForm.controls.profielnaam.invalid && registerForm.controls.profielnaam.touched  ? 'error-label' : null }}"
+                            for="profielnaam">Uw profielnaam
+                        </label>
+
+                        <small *ngIf="registerForm.controls.profielnaam.invalid && registerForm.controls.profielnaam.touched"
+                            class="error-small">Geen geldige profielnaam
+                        </small>
+                    </div>
+
+                    <input type="text" formControlName="profielnaam" placeholder="Geef profielnaam in">
+
                 </div>
 
-                <div class="input-wrapper" >
-                    <label
-                        class="{{ registerForm.controls.email.invalid && registerForm.controls.email.touched  ? 'error-label' : null }}"
-                        for="profielnaam">E-mailadres</label>
+                <div class="input-wrapper">
+                    <div class="label-wrapper">
+                        <label
+                            class="{{ registerForm.controls.email.invalid && registerForm.controls.email.touched  ? 'error-label' : null }}"
+                            for="email">E-mailadres
+                        </label>
+
+                        <small *ngIf="registerForm.controls.email.invalid && registerForm.controls.email.touched"
+                            class="error-small">Geen geldig
+                            e-mailadres
+                        </small>
+                    </div>
+
                     <input type="email" id="email" name="email" placeholder="voorbeeld@email.com" required
                         formControlName="email">
-                    <small *ngIf="registerForm.controls.email.invalid && registerForm.controls.email.touched" class="error-small">Geen geldig
-                        e-mailadres</small>
+
                 </div>
 
                 <p>Email Status: {{ registerForm.controls.email.status }}</p>
 
                 <div class="input-wrapper">
                     <label
-                        class="{{ registerForm.controls.wachtwoord.invalid && registerForm.controls.wachtwoord.touched  ? 'error-label' : null }} ww-input"
+                        class="{{ registerForm.controls.password.invalid && registerForm.controls.password.touched  ? 'error-label' : null }} ww-input"
                         for="wachtwoord">Wachtwoord</label>
-                    <div class="{{ registerForm.controls.wachtwoord.invalid && registerForm.controls.wachtwoord.touched  ? 'error-border' : null }} pw-wrapper">
-                        <input class="ww-input" #pwCharacterCount (keyup)="validatePW($event)" type={{type}} id="wachtwoord" name="ww" placeholder="Geef wachtwoord in" required formControlName="wachtwoord" >
+                    <div
+                        class="{{ registerForm.controls.password.invalid && registerForm.controls.password.touched  ? 'error-border' : null }} pw-wrapper">
+                        <input class="ww-input" #pwCharacterCount (keyup)="validatePW($event)" type={{type}}
+                            id="password" name="ww" placeholder="Geef wachtwoord in" required
+                            formControlName="password">
 
                         <img src={{eyeImg}} id="eye" title="toon paswoord" (click)="togglePW()">
                     </div>
@@ -45,15 +64,12 @@
                             tekens resterend</p>
                         <ul>
                             <div class="validation-wrapper">
-                                <!-- <li><img src="{{ validationArr[0] ? validImg : errorImg }}">Hoofdletter</li> -->
                                 <li><img src="{{ validateCap }}">Hoofdletter</li>
                             </div>
                             <div class="validation-wrapper">
-                                <!-- <li><img src="{{ validationArr[1] ? validImg : errorImg }}">Kleine letter</li>  -->
-                                <li><img src="{{ validateLow }}">Kleine letter</li> 
+                                <li><img src="{{ validateLow }}">Kleine letter</li>
                             </div>
                             <div class="validation-wrapper">
-                                <!-- <li><img src="{{ validationArr[2] ? validImg : errorImg }}">Cijfer</li> -->
                                 <li><img src="{{ validateNumber }}">Cijfer</li>
                             </div>
                         </ul>
@@ -68,23 +84,16 @@
                             <label>Ik ben</label>
                             <div>
                                 <div class="radio-item">
-                                    <input type="radio"
-                                           name="user-geslacht" 
-                                           value="user-male" 
-                                           id="user-male"
-                                            formControlName="user-geslacht">
+                                    <input type="radio" name="geslacht" value="male" id="user-male"
+                                        formControlName="geslacht">
                                     <label for="user-male">
-                                        <img src="/assets/male.svg" 
-                                             alt="Mannelijk geslacht icoon">
+                                        <img src="/assets/male.svg" alt="Mannelijk geslacht icoon">
                                     </label>
                                 </div>
 
                                 <div class="radio-item radio-item-two">
-                                    <input type="radio"
-                                           name="user-geslacht"
-                                           value="user-female"
-                                           id="user-female"
-                                            formControlName="user-geslacht">
+                                    <input type="radio" name="geslacht" value="female" id="user-female"
+                                        formControlName="geslacht">
                                     <label for="user-female">
                                         <img src="/assets/female.svg" alt="Vrouwelijk geslacht icoon">
                                     </label>
@@ -92,21 +101,23 @@
                             </div>
                         </div>
 
-                        <!-- DATE GENDER SELECT -->
-
                         <div class="gender-wrapper">
                             <label>Ik zoek</label>
                             <div>
                                 <div class="radio-item">
-                                    <input type="radio" name="date-geslacht" value="date-male" id="date-male"
-                                        formControlName="date-geslacht">
+                                    <input type="radio" name="opzoeknaar" value="date-male" id="date-male"
+                                        formControlName="opzoeknaar">
                                     <label for="date-male">
                                         <img src="/assets/male.svg" alt="Mannelijk geslacht icoon">
                                     </label>
                                 </div>
 
                                 <div class="radio-item radio-item-two">
-                                    <input type="radio" name="date-geslacht" value="date-female" id="date-female">
+                                    <input type="radio" 
+                                            name="opzoeknaar" 
+                                            value="date-female" 
+                                             id="date-female"
+                                             formControlName="opzoeknaar">
                                     <label for="date-female">
                                         <img src="/assets/female.svg" alt="Vrouwelijk geslacht icoon">
                                     </label>
@@ -117,11 +128,21 @@
                 </div>
 
                 <div class="input-wrapper">
-                    <label for="profielnaam">Geboortedatum</label>
+                    <div class="label-wrapper">
+                        <label
+                            class="{{ registerForm.controls.geboortedatum.invalid && registerForm.controls.geboortedatum.touched  ? 'error-label' : null }} ww-input"
+                            for="geboortedatum">Geboortedatum
+                        </label>
+                                                <small
+                            *ngIf="registerForm.controls.geboortedatum.invalid && registerForm.controls.geboortedatum.touched"
+                            class="error-small">Geen geldige geboortedatum
+                        </small>
+                    </div>
+
+
                     <input type="text" id="geboortedatum" name="geboortedatum" placeholder="MM/DD/JJ" required
                         formControlName="geboortedatum">
-                        <small *ngIf="registerForm.controls.geboortedatum.invalid && registerForm.controls.geboortedatum.touched"
-                        class="error-small">Geen geldige geboortedatum</small>
+
                 </div>
 
                 <button type="submit" class="form-submit-btn">Begin met daten</button>

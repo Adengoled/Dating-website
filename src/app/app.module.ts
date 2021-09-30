@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -11,11 +11,13 @@ import { SettingsComponent } from './dashboard/settings/settings.component';
 import { MessagesComponent } from './dashboard/messages/messages.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import { LandingHeaderComponent } from './landing-header/landing-header.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ModalRegComponent } from './modal-reg/modal-reg.component';
 import { HttpClientModule} from '@angular/common/http';
 import { NewComponent } from './dashboard/search/filters/new/new.component';
 import { NearbyComponent } from './dashboard/search/filters/nearby/nearby.component';
 import { OnlineComponent } from './dashboard/search/filters/online/online.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +26,7 @@ import { OnlineComponent } from './dashboard/search/filters/online/online.compon
     DashboardComponent,
     LandingHeaderComponent,
     SearchComponent,
+    ModalRegComponent,
     NewComponent,
     NearbyComponent,
     OnlineComponent
@@ -50,9 +53,17 @@ import { OnlineComponent } from './dashboard/search/filters/online/online.compon
             ]
         },
     ]),
-      ReactiveFormsModule
+      FormsModule,
+      ReactiveFormsModule,
+      HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
