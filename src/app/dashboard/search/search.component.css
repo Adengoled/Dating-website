@@ -51,7 +51,11 @@
  }
 
  .filter-active {
-   background-color: var(--prim);
    color: var(--white);
+   background-color: var(--prim);
  }
+
+ .filter-active span {
+  color: var(--white);
+}
 
