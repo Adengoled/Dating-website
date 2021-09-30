@@ -52,8 +52,9 @@
                     <span>Instellingen</span>
                 </a>
             </li>
+            
             <li>
-                <a routerLink="login">
+                <a routerLink="/login" (click)=logout()>
                     <svg viewBox="0 0 24 24">
                         <path d="m2 12 5 4v-3h9v-2H7V8z" />
                         <path
@@ -63,18 +64,21 @@
                 </a>
             </li>
         </ul>
+       
 
-        <div *ngFor="let item of ownAvatar" class="welcome-back">
-            <!-- User wordt doorgestuurd naar zijn profielpagina gelijk andere users het zien -->
+        
+        <!-- User wordt doorgestuurd naar zijn profielpagina gelijk andere users het zien -->
+        <!-- <div *ngFor="let item of ownAvatar" class="welcome-back"> -->
+        <div class="welcome-back">
             <a href="#">
-                <img [src]="item.profielfoto" alt="">
+                <!-- <img [src]="item.profielfoto" alt=""> -->
                 <div>
-                    <span>Welkom terug,</span>
-                    <span>{{item.profielnaam}}</span>
+                    <span>Welkom terug, <br>{{ message }}</span>
+                    <!-- <span>Welkom terug,</span>
+                    <span>{{item.profielnaam}}</span> -->
                 </div>
             </a>
         </div>
-
     </aside>
 
     <main class="main">

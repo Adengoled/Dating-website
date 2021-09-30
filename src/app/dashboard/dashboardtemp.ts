@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit {
     this.http.get('http://localhost:8000/api/user')
             .subscribe(
                 (user: any) => {
-                    this.message = `${user.profielnaam}`;
+                    this.message = `Welkom terug, ${user.profielnaam}`;
                     Auth.authEmitter.emit(true) // true - authenticated
                 }, 
                 () => {

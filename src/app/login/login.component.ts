@@ -45,8 +45,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // this.http.post('http://localhost:8000/api/login', this.loginForm.getRawValue())
-    //   .subscribe( () => this.router.navigate(['/dashboard/zoek-profielen/nieuw/']));
+    this.http.post('http://localhost:8000/api/login', this.loginForm.getRawValue())
+      .subscribe( () => this.router.navigate(['/dashboard/zoek-profielen/nieuw/']));
     this.router.navigate(['/dashboard/zoek-profielen/nieuw']);
   }
 
