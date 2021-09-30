@@ -3,34 +3,52 @@
     <!-- <p>login works!</p> -->
     <section class="login-wrapper">
         <button class="link-btn link-btn-">
-            <a href="/register"><span>Nog geen account?</span> Klik hier om in te schrijven</a>
+            <a routerLink="/register"><span>Nog geen account?</span> Klik hier om in te schrijven</a>
         </button>
 
         <!-- LOGIN FORMULIER -->
         <div class="form-wrapper login-form-wrapper">
             <form [formGroup]="loginForm"
-                action="http://localhost/phpdate/better-love/Dating-website/database/login.php" method="POST">
+            (ngSubmit)="onSubmit()" method="POST">
                 <!-- <div class="input-wrapper">
                     <label for="profielnaam" >Uw profielnaam</label> 
                     <input type="text" id="profielnaam" name="" placeholder="Profielnaam" required>
                 </div> -->
 
                 <div class="input-wrapper">
-                    <label for="email">E-mailadres</label>
+                    <div class="label-wrapper">
+                        <label class="{{ loginForm.controls.email.invalid && loginForm.controls.email.touched  ? 'error-label' : null }}"
+
+                        for="email">E-mailadres</label>
+
+                        <small *ngIf="loginForm.controls.email.invalid && loginForm.controls.email.touched"
+                        class="error-small">Ongeldig e-mailadres
+                      </small>
+                    </div>
                     <input type="email" id="email" name="email" placeholder="voorbeeld@email.com"
                         formControlName="email" required>
                 </div>
 
                 <div class="input-wrapper">
-                    <label for="wachtwoord">Wachtwoord</label>
-                    <div class="pw-wrapper">
-                        <input type={{type}} id="wachtwoord" name="ww" placeholder="Geef wachtwoord in"
-                            formControlName="wachtwoord" required>
+                    <div class="label-wrapper">
+                        <label 
+                        class="{{ loginForm.controls.password.invalid && loginForm.controls.password.touched  ? 'error-label' : null }} ww-input"
+                        for="password">
+                            Wachtwoord
+                        </label>
+                        <small *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.touched"
+                        class="error-small">Wachtwoord is vereist
+                      </small>
+                    </div>
+
+                    <div class="{{ loginForm.controls.password.invalid && loginForm.controls.password.touched  ? 'error-border' : null }} pw-wrapper">
+                        <input class="ww-input" type={{type}} id="password" name="ww" placeholder="Geef wachtwoord in"
+                            formControlName="password" required>
                         <img src="{{eyeImg}}" id="show-pw" title="toon paswoord" (click)="togglePW()">
                     </div>
                 </div>
 
-                <p>Form Status: {{ loginForm.status }}</p>
+                <!-- <p>Form Status: {{ loginForm.status }}</p> -->
 
                 <div class="login-details-wrapper">
                     <div class="logged-state-wrapper">

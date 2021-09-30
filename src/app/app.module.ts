@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -11,7 +11,9 @@ import { SettingsComponent } from './dashboard/settings/settings.component';
 import { MessagesComponent } from './dashboard/messages/messages.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
 import { LandingHeaderComponent } from './landing-header/landing-header.component';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ModalRegComponent } from './modal-reg/modal-reg.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +21,8 @@ import { LandingHeaderComponent } from './landing-header/landing-header.componen
     LoginComponent,
     DashboardComponent,
     LandingHeaderComponent,
-    SearchComponent
+    SearchComponent,
+    ModalRegComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,9 +39,17 @@ import { LandingHeaderComponent } from './landing-header/landing-header.componen
             ]
         },
     ]),
-      ReactiveFormsModule
+      FormsModule,
+      ReactiveFormsModule,
+      HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

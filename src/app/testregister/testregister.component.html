@@ -1,0 +1,9 @@
+<form [formGroup]="testregisterForm" (submit)="submit()">
+    <h1>Please register</h1>
+    <input formControlName="profielnaam" class="form-control"  placeholder="Profielnaam" required>
+    <input formControlName="email" type="email" class="form-control" placeholder="email" required>
+    <input formControlName="wachtwoord" type="password" class="form-control" placeholder="wachtwoord" required>
+    <input formControlName="geboortedatum" class="form-control" placeholder="geboortdatum" required>
+
+    <button style="background-color:red;" type="submit">Submit</button>
+</form>

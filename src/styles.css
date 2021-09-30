@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,600&display=swap');
+
 * {
     box-sizing: border-box;
     font-size: 14px;
@@ -702,12 +704,14 @@ input[type="radio"] {
 
 .error-small {
     color: var(--error);
-    font-size: 1rem;
+    font-size: 0.9rem;
     text-align: right;
-    font-style: italic;
+    /* font-style: italic; */
     letter-spacing: 0.05rem;
     font-weight: 500;
-    margin-top: -15px;
+    /* transform: translateY(15px);
+    transition-duration: 1s; */
+    /* margin-top: -15px; */
 }
 
 /* .error{
@@ -747,11 +751,10 @@ input.ng-valid.ng-touched:focus:not(.ww-input) {
 }
 
 .error-border {
-    border: 2px solid var(--error);
+    border: 2px solid var(--error)!important;
 }
 
 /* PASSWORD VALIDATION */
-
 .pw-validation {
     /* color: var(--gray); */
     display: flex;
@@ -784,4 +787,12 @@ input.ng-valid.ng-touched:focus:not(.ww-input) {
     padding-right: 5px;
     height: 12px;
     align-self: center;
+}
+
+
+/* LABEL STYLING */
+
+.label-wrapper{
+    display:flex;
+    justify-content: space-between;
 }

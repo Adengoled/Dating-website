@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,30 +12,24 @@ export class LoginComponent implements OnInit {
 
   loginForm:FormGroup;
 
-  constructor() {}
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
 
     this.loginForm = new FormGroup({
       'email': new FormControl(null,[Validators.required, Validators.email]),
-      'wachtwoord': new FormControl(null,
+      'password': new FormControl(null,
          [
-          Validators.required, 
-          Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$'),
-          Validators.minLength(8)
+          Validators.required
+          // Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$'),
+          // Validators.minLength(8)
         ]
         )
     })
   }
-
-  // getters
-  // get registerFormControl() { return this.registerForm.get('name'); }
-
-
-  get name() { return this.loginForm.get('name'); }
-  get email() { return this.loginForm.get('email') }
-  // get wachtwoord() { return this.registerForm.get('wachtwoord'); }
-
   // togglePW function
   type:string = "password";
   eyeImg:string = "assets/eye-o.svg";
@@ -48,11 +44,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  // password validation function
-  pwValidations = [];
-
-  // onSubmit(){
-  //   alert("form werkt");
-  // }
+  onSubmit(): void {
+    // this.http.post('http://localhost:8000/api/login', this.loginForm.getRawValue())
+    //   .subscribe( () => this.router.navigate(['/dashboard/zoek-profielen/nieuw/']));
+    this.router.navigate(['/dashboard/zoek-profielen/nieuw']);
+  }
 
 }

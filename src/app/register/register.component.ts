@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CustomvalidationService } from '../services/customvalidation.service';
-
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -13,13 +14,15 @@ export class RegisterComponent implements OnInit {
   registerForm:FormGroup;
 
   constructor(
-    private customValidator: CustomvalidationService
+    // private customValidator: CustomvalidationService,
+    // private formBuilder: FormBuilder,
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-
     this.registerForm = new FormGroup({
-      'name': new FormControl(null,
+      'profielnaam': new FormControl(null,
         [
          Validators.required, 
          Validators.minLength(2),
@@ -27,28 +30,20 @@ export class RegisterComponent implements OnInit {
         ]
          ),
       'email': new FormControl(null,[Validators.required, Validators.email]),
-      'wachtwoord': new FormControl(null,
+      'password': new FormControl(null,
          [
           Validators.required, 
           Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$'),
           Validators.minLength(8)
         ]
         ),
-      'user-geslacht': new FormControl(null, Validators.required),
-      'date-geslacht': new FormControl(null, Validators.required),
+      'geslacht': new FormControl(null, Validators.required),
+      'opzoeknaar': new FormControl(null, Validators.required),
       'geboortedatum': new FormControl(null, Validators.required)
     })
 
   }
-
- // GETTERS
-  // get name() { return this.registerForm.get('name'); }
-  // get email() { return this.registerForm.get('email') }
-  // get wachtwoord() { return this.registerForm.get('wachtwoord'); }
-
-
   //PASSWORD VALIDATION ERRORS
-  // validationArr:any;
   password:string;
   errorImg:string = "assets/x-pw.svg";
   validImg:string = "assets/check.svg";  
@@ -78,7 +73,16 @@ export class RegisterComponent implements OnInit {
   }
 
   // SUBMIT FORM 
-  onSubmit(){
-    alert("form werkt");
+  // onSubmit(): void{
+  //   alert("form werkt");
+  // }
+
+  onSubmit(): void{
+    this.http.post('http://localhost:8000/api/register', this.registerForm.getRawValue())
+      .subscribe(() => this.router.navigate(['/login']));
+
+      // this.router.navigate(['/login']);
   }
+
+
 }
