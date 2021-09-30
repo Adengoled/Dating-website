@@ -14,7 +14,6 @@ import { LandingHeaderComponent } from './landing-header/landing-header.componen
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ModalRegComponent } from './modal-reg/modal-reg.component';
-import { HttpClientModule} from '@angular/common/http';
 import { NewComponent } from './dashboard/search/filters/new/new.component';
 import { NearbyComponent } from './dashboard/search/filters/nearby/nearby.component';
 import { OnlineComponent } from './dashboard/search/filters/online/online.component';
