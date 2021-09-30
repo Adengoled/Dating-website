@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/service/data.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,14 +14,19 @@ export class DashboardComponent implements OnInit {
     {linkUrl: "#", linkName: "Succesverhalen"}
   ];
 
-  // active = false;
-  // makeActive(active: any){
-  //   this.active = true;
-  // }
+  ownAvatar: any;
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
+    this.getOwnAvatarData();
   }
+
+  getOwnAvatarData() {
+    this.dataService.getOwnAvatar().subscribe(res => 
+      {
+        this.ownAvatar = res;
+      });
+  } 
 
 }

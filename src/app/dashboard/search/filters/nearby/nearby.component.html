@@ -1,0 +1,28 @@
+<section class="user-profiles">
+    <div *ngFor="let profile of nearbyProfiles" class="card" [style]="profile.profielfoto">
+        <div class="card-content">
+            <div class="user-details-container">
+                <div class="user-details">
+                    <h3>{{profile.profielnaam}},</h3><span class="age">{{profile.geboortedatum}}</span>
+                </div>
+                <img src="assets/online-dot.svg" alt="Online indicator">
+            </div>
+
+            <div class="locatie">
+                <img src="assets/location.svg" alt="Locatie icoon">
+                <p>{{profile.locatie}}</p>
+            </div>
+
+            <div class="btn-container">
+                <button class="profile-btn">
+                    <a href="#">Bezoek profiel</a>
+                </button>
+                <button class="chat-btn">
+                    <a href="#">
+                        <img src="assets/chat.svg" alt="Chat icoon">
+                    </a>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
