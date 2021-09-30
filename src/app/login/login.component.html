@@ -22,7 +22,7 @@
                         for="email">E-mailadres</label>
 
                         <small *ngIf="loginForm.controls.email.invalid && loginForm.controls.email.touched"
-                        class="error-small">Ongeldig e-mailadres
+                        class="error-small">E-mail is vereist
                       </small>
                     </div>
                     <input type="email" id="email" name="email" placeholder="voorbeeld@email.com"
@@ -59,8 +59,7 @@
                     <a href="#">Wachtwoord vergeten?</a>
                 </div>
 
-                <button type="submit" class="form-submit-btn">Inloggen</button>
-
+                <button type="submit" class="form-submit-btn" [disabled]="!loginForm.valid">Inloggen</button>
             </form>
         </div>
 

@@ -18,10 +18,7 @@ export class DashboardComponent implements OnInit {
   ];
 
     // declarations
-    // message:any = ''; 
-    message:any;
-    // foto:string = '';
-    foto:any;
+    message:string = ''; 
     ownAvatar:any;
 
     constructor(
@@ -34,14 +31,13 @@ export class DashboardComponent implements OnInit {
     ngOnInit(): void {
 
     // Gets user avatar
-    // this.getOwnAvatarData();
+    this.getOwnAvatarData();
 
     // check if user is authenticated
     this.http.get('http://localhost:8000/api/user')
             .subscribe(
                 (user: any) => {
-                    this.message = `${user.profielnaam}`;
-                    this.foto = `${user.profielfoto}`;
+                    this.message = `Welkom terug, ${user.profielnaam}`;
                     Auth.authEmitter.emit(true) // true - authenticated
                 }, 
                 () => {
@@ -51,20 +47,16 @@ export class DashboardComponent implements OnInit {
             );
     }
 
-    // getOwnAvatarData() {
-    // this.dataService.getOwnAvatar().subscribe(res => 
-    //     {
-    //     this.ownAvatar = `${user.profielfoto}`;
-    //     });
-    // } 
+    getOwnAvatarData() {
+    this.dataService.getOwnAvatar().subscribe(res => 
+        {
+        this.ownAvatar = res;
+        });
+    } 
 
     logout(): void {
         this.http.post('http://localhost:8000/api/logout', {})
             .subscribe( () => {
             });
     }  
-
-    showImg() {
-      console.log(this.foto);
-    }
 }

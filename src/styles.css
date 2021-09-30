@@ -795,3 +795,9 @@ input.ng-valid.ng-touched:focus:not(.ww-input) {
     display:flex;
     justify-content: space-between;
 }
+
+/* DISABLED BUTTON STYLING */
+
+button[disabled] {
+    background-color: var(--prim);
+}
